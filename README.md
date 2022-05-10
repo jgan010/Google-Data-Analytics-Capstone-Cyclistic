@@ -27,9 +27,9 @@ Dataset was downloaded from https://divvy-tripdata.s3.amazonaws.com/index.html.
 For the purpose of this analysis, 12 months of data from April 2021 to March 2022 will be analysed. The most recent data available was March 2022. Total data points is approximately 5.7M.
 
 **Dataset was checked for credibility** 
-*- The dataset is reliable, original, cited as it is provided under licence as above.  
-*- Data is current as the most recent data used was March 2022
-*- There are missing data points for start station and end station and geographic latitude and longitude in the dataset therefore the data is not as comprehensive as it could have been. We will keep this in mind and account for these during data analysis.
+- The dataset is reliable, original, cited as it is provided under licence as above.  
+- Data is current as the most recent data used was March 2022
+- There are missing data points for start station and end station and geographic latitude and longitude in the dataset therefore the data is not as comprehensive as it could have been. We will keep this in mind and account for these during data analysis.
 
 
 ## Data Exploration and cleaning using SQL
@@ -41,7 +41,8 @@ For the purpose of this analysis, 12 months of data from April 2021 to March 202
 - are excluded in understanding the top 10 popular stations between customer who are casual and member to gain insights on location usage.
 - Rides that are a minute and less are excluded – start and end location checked to be the same therefore would assume these are not valid rides. 
 - SQL query revealed maximum ride duration as long as 38 days. It is likely that this may be an error or an outlier. However, rides that are more than 24 hours only made up approximately 0.07% therefore these rides are unlikely to affect the analysis. Therefore the data was kept in case of further question that arises during analysis.
- 
+
+
 **Documentation of any cleaning or manipulation of data:**
 Added:
   - ride month number column and month name column
