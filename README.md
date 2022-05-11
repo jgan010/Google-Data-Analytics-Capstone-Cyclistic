@@ -1,7 +1,7 @@
 
 Work in progress
 # Google Data Analytics Capstone Case Study on Cyclistic Bike Share 
-![Cyclistic logo]<img src="https://github.com/jgan010/Google-Data-Analytics-Capstone-Cyclistic/blob/main/Cyclistic%20Analysis%20Images/Cyclistic%20Bike%20share%20logo.png" width=50% height=50%>
+<img src="https://github.com/jgan010/Google-Data-Analytics-Capstone-Cyclistic/blob/main/Cyclistic%20Analysis%20Images/Cyclistic%20Bike%20share%20logo.png" width=20% height=20%>
 
 ### How does a bike-share navigate speedy success? 
 This capstone case study on Cyclistic bike share is part of Google Data Analytics Professional course by Google on Coursera
