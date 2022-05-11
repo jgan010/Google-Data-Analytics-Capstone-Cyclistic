@@ -1,5 +1,8 @@
 # Google Data Analytics Capstone Case Study on Cyclistic Bike Share 
-<img src="https://github.com/jgan010/Google-Data-Analytics-Capstone-Cyclistic/blob/main/Cyclistic%20Analysis%20Images/Cyclistic%20Bike%20share%20logo.png" width=20% height=20%> 
+<p align="center">
+    <img src="https://github.com/jgan010/Google-Data-Analytics-Capstone-Cyclistic/blob/main/Cyclistic%20Analysis%20Images/Cyclistic%20Bike%20share%20logo.png" width=20% height=20%> 
+    </p>
+
 ## How does a bike-share navigate speedy success? 
 
 This capstone case study on Cyclistic bike share is part of Google Data Analytics Professional course by Google on Coursera
@@ -13,13 +16,15 @@ This capstone case study on Cyclistic bike share is part of Google Data Analytic
 Cyclistic, a bike share company in Chicago wants to understand how casual riders and annual members use Cyclistic bikes differently. These insights will be used to design a new marketing strategy to convert casual riders into annual member as the company believes that the company’s future success depends on maximizing the number of annual memberships 
 
 ## Brief background of case study company
-A bike-share program that features more than 5,824 bicycles and 692 docking stations. Cyclistic sets itself apart by also offering reclining bikes, hand tricycles, and cargo bikes, making bike-share more inclusive to people with disabilities and riders who can’t use a standard two-wheeled bike. The majority of riders opt for traditional bikes; about 8% of riders use the assistive options. Cyclistic users are more likely to ride for leisure, but about 30% use them to commute to work each day.
+A bike-share program that features more than 5,824 bicycles and 692 docking stations. Cyclistic sets itself apart by also offering reclining bikes, hand tricycles, and cargo bikes, making bike-share more inclusive to people with disabilities and riders who can’t use a standard two-wheeled bike. The majority of riders opt for traditional bikes; about 8% of riders use the assistive options. Cyclistic users are more likely to ride for leisure, but about 30% use them to commute to work each day. 
+
+The director of marketing, Lily Moreno, believes that maximizing the number of annual members will be key to future growth. Rather than creating a marketing campaign that targets all-new customers, Moreno believes there is a very good chance to convert casual riders into members.
 
 ## Limitation/Assumptions made of data available
 - No information on where casual riders lives in the Cyclistic service area due to data-privacy issues prohibit the use of riders’ personally identifiable information.
 - Analysis and insights will be limited on the casual rider’s behaviour as there are no data on types of purchase (single pass or full-day pass) and if there are multiple purchases from the same casual rider. 
 
-## Data sources
+## Data Sources
 Historical bike trip data provided by Motivate International Inc. under licence from [Divvy Bikes](https://ride.divvybikes.com/data-license-agreement). (The datasets have a different name because Cyclistic is a fictional company for the purpose of the Google Data Analytic Capstone project). Personal identifiable information are not available due to data-privacy. 
 
 Dataset was downloaded from https://divvy-tripdata.s3.amazonaws.com/index.html. 
@@ -31,7 +36,7 @@ For the purpose of this analysis, 12 months of data from April 2021 to March 202
 - There are missing data points for start station and end station and geographic latitude and longitude in the dataset therefore the data is not as comprehensive as it could have been. We will keep this in mind and account for these during data analysis.
 
 
-## Data Exploration and cleaning using SQL
+## Data Exploration and Cleaning using SQL
 **Data exploration and cleaning are done using SQL query on PostgreSQL on pgAdmin4.** *Query code in txt file.*
 - ride_id  was checked for duplicate  and was confirmed to be unique. 
 - Removing rides that has end time before the start time. 
@@ -58,67 +63,84 @@ For the purpose of this analysis, 12 months of data from April 2021 to March 202
 *(Important observation during analysis:  During analysis in Tableau, it was noticed that the analysis of the average ride duration did not ‘make sense’ against the counts in ride durations ‘bins’.  Rechecking the data against SQL query of raw data revealed that this observation is valid. Data was checked again and it was due to the grouped data which has a count column and this affected the ‘quick’ aggregation measure in Tableau. The resolution for this issue is to use the level of detail expressions in Tableau.)*
     
  
-## Data Visualizaiton
+## Data Visualization
 Data analysis visualization is on [Tableau Google Data Analytics Capstone Cyclistic Bike share by Jun Gan](https://public.tableau.com/app/profile/jun.gan3045/viz/GoogleDataAnalyticsCapstoneCaseStudyHowDoesaBike-ShareNavigateSpeedySuccess_16517513915180/GoogleDataAnalyticsCapstoneCaseStudy1?publish=yes)
 
 ## Summary Analysis 
 #### Cyclistic Riders 
 Annual Members usage surpass casual riders by 11%. Both customers prefer classic bikes. 
-
-<img src="https://github.com/jgan010/Google-Data-Analytics-Capstone-Cyclistic/blob/main/Cyclistic%20Analysis%20Images/Cyclistic%20Customers.png" width=50% height=50%>
-
+<p align="center">
+    <img src="https://github.com/jgan010/Google-Data-Analytics-Capstone-Cyclistic/blob/main/Cyclistic%20Analysis%20Images/Cyclistic%20Customers.png">
+</p>
 
 #### Season Usage
 Bike usage peak during summer months for both casual riders and annual members with only slightly higher number of rides for casual riders. There is a significant decline in casual riders in winter months compared to annual members. Between October to December, the number of casual riders is 1.5 -2.6x less than annual members. 
 
-<img src= "https://github.com/jgan010/Google-Data-Analytics-Capstone-Cyclistic/blob/main/Cyclistic%20Analysis%20Images/Number%20of%20Rides%20by%20Season.png" width=50% height=50%>
+<p align="center">
+<img src= "https://github.com/jgan010/Google-Data-Analytics-Capstone-Cyclistic/blob/main/Cyclistic%20Analysis%20Images/Number%20of%20Rides%20by%20Season.png">
+</p>
 
 #### Ride Analysis
-High usage of bikes by annual members during peak rush hours with rides averaging around 13.7 minutes. Half of the annual members (54.5%) tend to use the bikes for less than 10 minutes. 
+Analysis suggests that annual members use the bikes for commuting to work and Casual Riders uses the bikes for leisure purposes. 
 
-<img src="https://github.com/jgan010/Google-Data-Analytics-Capstone-Cyclistic/blob/main/Cyclistic%20Analysis%20Images/Number%20of%20Rides%20by%20Hour.png" width=60% height=60%>   
+Trending the number of rides by the time of the day showed a high usage of bikes by annual members during peak rush hours with rides averaging around 13.3 minutes. 
 
-<img src="https://github.com/jgan010/Google-Data-Analytics-Capstone-Cyclistic/blob/main/Cyclistic%20Analysis%20Images/Average%20Ride%20Duration%20by%20Day.png" width=50% height=49%>    
+<p align="center">
+<img src="https://github.com/jgan010/Google-Data-Analytics-Capstone-Cyclistic/blob/main/Cyclistic%20Analysis%20Images/Number%20of%20Rides%20by%20Hour.png" width=60% height=50%>   
 
-<img src="https://github.com/jgan010/Google-Data-Analytics-Capstone-Cyclistic/blob/main/Cyclistic%20Analysis%20Images/Avg%20Ride%20Duration%20trend%20by%20season.png" width=50% height=50%>.   
+<img src="https://github.com/jgan010/Google-Data-Analytics-Capstone-Cyclistic/blob/main/Cyclistic%20Analysis%20Images/Trend%20Average%20Ride%20duration.png" width=60% height=35%>
+</p>
+    
+Casual Riders on the other hand rides 2.2-2.5x longer than annual members throughout the week and with longer average ride duration (31.2 minutes).  
 
-The number of rides by annual members drop during weekends and are lower than casual members.  These suggests that annual members use the bikes for commuting to work. 
+<p align="center">
+<img src="https://github.com/jgan010/Google-Data-Analytics-Capstone-Cyclistic/blob/main/Cyclistic%20Analysis%20Images/Average%20Ride%20Duration%20by%20Day.png" width=60% height=10%>     
+</p>
 
-<img src="https://github.com/jgan010/Google-Data-Analytics-Capstone-Cyclistic/blob/main/Cyclistic%20Analysis%20Images/Total%20Number%20of%20Rides%20by%20Week.png" width=50% height=50%>
+The number of rides by annual members are higher than casual members on the weekdays but is lower during weekends.  
+<p align="center">
+    <img src="https://github.com/jgan010/Google-Data-Analytics-Capstone-Cyclistic/blob/main/Cyclistic%20Analysis%20Images/Total%20Number%20of%20Rides%20by%20Week.png" width=60% height=50%>
+</p>
 
+Half of the annual members (54.5%) tend to use the bikes for less than 10 minutes. These data indicated that the annual members are likely commuters. It is likely that the 30.3% of the casual riders uses the bikes for less than 10 minutes are also commuters. 
 
-<img src="https://github.com/jgan010/Google-Data-Analytics-Capstone-Cyclistic/blob/main/Cyclistic%20Analysis%20Images/Number%20of%20rides%20by%20Ride%20duration%20(bins).png" width=50% height=50%>
+<p align="center">
+<img src="https://github.com/jgan010/Google-Data-Analytics-Capstone-Cyclistic/blob/main/Cyclistic%20Analysis%20Images/Number%20of%20rides%20by%20Ride%20duration%20(bins).png" width=60% height=50%>
+</p>
 
-
-Casual Riders on the other hand rides 2.2-2.5x longer than annual members throughout the week and with longer average ride duration (32.3 minutes).  However, 30% of casual riders tend to use the bikes for 10 mins or less suggesting that the bikes may be used for commuting similar to annual members. However, it is not possible to confirm this without additional data. 
- 
 The number of casual rides are lower than the annual member during the weekday but higher in the weekend and peaks during summer. In the summer, the average ride duration also peaks. This suggests that casual riders use the bikes for leisure and possibly a proportion of them are tourists. Start station location may give an indication if casual riders uses the bikes for leisure and touristic purposes. 
 
-<p align="centre">
-<img src="https://github.com/jgan010/Google-Data-Analytics-Capstone-Cyclistic/blob/main/Cyclistic%20Analysis%20Images/Avg%20Ride%20Duration%20trend%20by%20season.png" width=50% height=50%>
-</p>
 
 #### Location of Start Station 
 The most popular start station is Streeter Dr & Grand Ave. This happens to be a popular tourist location with parks and museam nearby. The location of start station for Casual riders are slightly more concentrated on the coast whereas annual members are slightly more evenly spread in the city indicated by the bubble size representing the total number of rides.
 
 The bottom right corner of the map is the location of University of Chicago and the there is a higher number of annual members in this area compared to casual riders indicated by the circle size in the map. Likely this is also the case in the other parts of the city where the higher education institutes are located. It can be concluded that it is high possibility that a proportion of annual members are university students. However, this cannot be confirmed without further data on the demographics of the Cyclistic customers. 
 
-
+<p align="center">
 <img src="https://github.com/jgan010/Google-Data-Analytics-Capstone-Cyclistic/blob/main/Cyclistic%20Analysis%20Images/Map%20Casual%20riders.png" width=30% height=30%>       <img src="https://github.com/jgan010/Google-Data-Analytics-Capstone-Cyclistic/blob/main/Cyclistic%20Analysis%20Images/Map%20Annual%20Members.png" width=30% height=30%>
+</p>
 
-**TOP 10 Start Station**    
-<img src="https://github.com/jgan010/Google-Data-Analytics-Capstone-Cyclistic/blob/main/Cyclistic%20Analysis%20Images/Top%2010%20Station.png" width=40% height=40%>
+**Top 10 Start Station**    
 
+The most popular station is Streeter St and Grand Ave. 
 
+<p align="center">
+    <img src="https://github.com/jgan010/Google-Data-Analytics-Capstone-Cyclistic/blob/main/Cyclistic%20Analysis%20Images/Top%2010%20Station.png" width=30% height=30%>
+</p>
+
+<p align="center">
 <img src="https://github.com/jgan010/Google-Data-Analytics-Capstone-Cyclistic/blob/main/Cyclistic%20Analysis%20Images/Number%20of%20rides%20table.png" width=60% height=60%>
+</p>
 
 ## Conclusion: 
 Bike usage peak during summer months. Annual members show peak usage at peak hours with ride duration averaging around 13 minutes.  Casual riders tend to use the bikes 2.2 – 2.5x longer than annual members. Higher numbers of casual riders around the coastal area whereas the number of annual members tends are more evenly spread across city and higher around university area. 30% of casual riders uses the bike for 10 min and less suggest possibility that these riders are commuters with potential to convert them to annual membership.  
+
+However, additional data is needed to understand what is more likely to convert casual riders into annual members. The current available dataset suggests that casual riders prefering weekends and summer which indicates that the bike usage are for leisure use.
 
 ## Recommendations based on insights
 The possible recommendations based on the insights so far are: 
 1.	Increase marketing campaign and advertisement in summer months, weekends, peak hours, top 10 most popular station for Casual Riders
 2.	Offer trial membership and discounted membership if they continue after the trial to casual riders
-3.	Consider implementing tiered annual membership with weekend options for those that prefers to use bikes in the weekends and for those that uses the bikes for commuting
+3.	Consider implementing tiered annual membership with weekend options for those that prefers to use bikes in the weekends and for those that uses the bikes for commuting.
 
 **END OF ANALYSIS AND INSIGHTS**
