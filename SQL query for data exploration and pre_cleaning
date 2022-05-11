@@ -1,0 +1,178 @@
+
+--Confirming total count data after import
+SELECT COUNT(*)
+FROM tripdata
+
+
+-- Exploring data for proportion of member type and bike types
+SELECT 
+       rideable_type, member_casual, COUNT(member_casual)
+FROM tripdata
+GROUP BY rideable_type, member_casual
+
+--query further on  docked bike for casual members 
+SELECT *
+FROM tripdata
+WHERE rideable_type = 'docked_bike' 
+AND member_casual = 'casual'
+LIMIT 100
+
+--checking duplicate data for ride_id
+SELECT COUNT(DISTINCT (ride_id))
+FROM tripdata
+
+-- ensuring that there is no duplicate data for ride_id
+SELECT ride_id, count(*)
+FROM tripdata
+GROUP BY  ride_id
+HAVING count(*)>1
+
+/*checking/exploring for duplicate data other columns 
+(rideable_type, started_at,start_station_name). 
+Overview of data and further query based on timestamp filter indicated 
+that these data points cannot be ruled out for various reasons 
+such as bikes rented at the same time by couples
+ */
+SELECT rideable_type, started_at,start_station_name, count(*)
+FROM tripdata
+GROUP BY  started_at,rideable_type, start_station_name
+HAVING count(*)>1
+
+
+-- Check null values in each columns. 
+SELECT 
+	SUM(CASE WHEN ride_id IS NULL THEN 1 ELSE 0 END) as ride_id_null_count,
+	SUM(CASE WHEN rideable_type IS NULL THEN 1 ELSE 0 END) as rideable_type_null_count,
+	SUM(CASE WHEN started_at IS NULL THEN 1 ELSE 0 END) as started_at_null_count,
+	SUM(CASE WHEN ended_at IS NULL THEN 1 ELSE 0 END) as ended_at_null_count,
+	SUM(CASE WHEN start_station_name IS NULL THEN 1 ELSE 0 END) as start_station_name_null_count,
+	SUM(CASE WHEN start_station_id IS NULL THEN 1 ELSE 0 END) as start_station_id_null_count, 
+	SUM(CASE WHEN end_station_name IS NULL THEN 1 ELSE 0 END) as end_station_name_null_count,
+	SUM(CASE WHEN end_station_id IS NULL THEN 1 ELSE 0 END) as end_station_id_null_count,
+	SUM(CASE WHEN start_lat IS NULL THEN 1 ELSE 0 END) as start_lat_null_count,
+	SUM(CASE WHEN start_lng IS NULL THEN 1 ELSE 0 END) as start_lng_null_count,
+	SUM(CASE WHEN end_lat IS NULL THEN 1 ELSE 0 END) as end_lat_null_count,
+	SUM(CASE WHEN end_lng IS NULL THEN 1 ELSE 0 END) as end_lng_null_count,
+	SUM(CASE WHEN member_casual IS NULL THEN 1 ELSE 0 END) as member_casual_null_count
+FROM tripdata
+
+
+--check min and max time
+SELECT 
+min(ended_at-started_at) as min_interval,
+max(ended_at-started_at) as max_interval
+FROM tripdata
+
+-- checking minimum and maximum ride length 
+SELECT 
+	MIN(EXTRACT(EPOCH FROM (ended_at-started_at))/60) AS min_ride_length_minutes,
+	MAX(EXTRACT(EPOCH FROM (ended_at-started_at))/3600) AS max_ride_length_hr
+FROM tripdata
+WHERE EXTRACT(EPOCH FROM (ended_at-started_at))/60 >0
+
+
+--count rides that are less than 0 min 
+SELECT COUNT(*)
+FROM tripdata
+WHERE EXTRACT(EPOCH FROM (ended_at-started_at))/60 <0
+
+--most popular start station 
+SELECT 
+	DISTINCT(start_station_name), count(start_station_name)
+FROM tripdata
+WHERE (EXTRACT(EPOCH FROM (ended_at-started_at))/60) > 0 
+GROUP BY start_station_name
+ORDER BY count(start_station_name) DESC
+
+
+--count number of distinct start station 
+SELECT COUNT (DISTINCT(start_station_name))
+FROM tripdata
+WHERE (EXTRACT(EPOCH FROM (ended_at-started_at))/60) > 0
+
+
+/*checking start station name vs start_station_id. 
+Identifying missing value in start station name*/
+SELECT 
+	DISTINCT(start_station_name),start_station_id, COUNT(start_station_id) as idcount, count(start_station_name) as namecount, ride_id
+FROM tripdata
+WHERE (EXTRACT(EPOCH FROM (ended_at-started_at))/60) > 0 AND start_station_name IS NULL and start_station_id is not null
+GROUP BY start_station_name, start_station_id, ride_id
+ORDER By start_station_id DESC
+
+
+--checking end station name vs end_station_id
+SELECT 
+	DISTINCT(end_station_name),end_station_id, COUNT(end_station_id) as idcount, count(end_station_name) as namecount, ride_id
+FROM tripdata
+WHERE (EXTRACT(EPOCH FROM (ended_at-started_at))/60) > 0 
+	AND end_station_name IS NULL 
+	AND end_station_id IS NOT null
+GROUP BY end_station_name, end_station_id, ride_id
+ORDER By end_station_id DESC
+
+
+/*checking start and end station name against latitude for trips less than 1 min 
+to determine if these should be eliminated from analysis*/
+SELECT 
+	start_station_name, 
+	end_station_name, 
+	member_casual,  
+	start_lat, 
+	start_lng, 
+	end_lat, end_lng
+FROM tripdata
+WHERE (EXTRACT(epoch FROM (ended_at-started_at))/60) <1
+GROUP BY start_station_name,end_station_name, member_casual,start_lat, start_lng, end_lat, end_lng
+
+/* table with addition of month, day number, day name, ride duration in minutes 
+and filtering out rides that has end timestamp earlier than start timestamp.*/ 
+CREATE TABLE tripdata_cleaned AS (
+SELECT
+	ride_id,
+	rideable_type,
+	started_at,
+	ended_at, 
+	EXTRACT (month from started_at) AS start_of_ride_month,
+ 	TRIM(to_char(started_at, 'Month')) AS month_name,
+	CASE (TRIM(to_char(started_at, 'Month')))
+		WHEN 'December' THEN 'Winter'
+		WHEN 'January' THEN 'Winter'
+		WHEN 'February' THEN 'Winter'
+		WHEN 'March' THEN 'Spring'
+		WHEN 'April' THEN 'Spring'
+		WHEN 'May' THEN 'Spring'
+		WHEN 'June' THEN 'Summer'
+		WHEN 'July' THEN 'Summer'
+		WHEN 'August' THEN 'Summer'
+		WHEN 'September' THEN 'Fall'
+		WHEN 'October' THEN 'Fall'
+		WHEN 'November' THEN 'Fall'
+	END AS season,
+	TRIM(to_char(started_at, 'Day')) AS day_name,
+	CASE (TRIM(to_char(started_at, 'Day')))
+		WHEN 'Monday' THEN 'Weekday'
+		WHEN 'Tuesday' THEN 'Weekday'
+		WHEN 'Wednesday' THEN 'Weekday'
+		WHEN 'Thursday' THEN 'Weekday'
+		WHEN 'Friday' THEN 'Weekday'
+		WHEN 'Saturday' THEN 'Weekend'
+		WHEN 'Sunday' THEN 'Weekend'
+	END AS weekend_weekday,
+	EXTRACT (hour from started_at) AS hour_ride_start, 
+	ROUND(EXTRACT(epoch from (ended_at-started_at))/60, 0) AS ride_duration_min,
+	COALESCE(start_station_name, 'Not available') AS start_station_name_1,
+	COALESCE(start_station_id, 'Not available') AS start_station_id_1,
+	COALESCE(end_station_name, 'Not available') AS end_station_name_1,
+	COALESCE(end_station_id, 'Not available') AS end_station_id_1,
+	start_lat,
+	start_lng,
+	member_casual
+FROM tripdata
+WHERE (EXTRACT(epoch from (ended_at-started_at))/60) >=0)
+
+
+
+
+
+

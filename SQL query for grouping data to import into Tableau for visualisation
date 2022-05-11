@@ -1,0 +1,34 @@
+--grouping data into table to import into Tableau
+with table1 as (SELECT 
+	INITCAP(member_casual) AS Customer, 
+	rideable_type,
+	season,
+	month_name, 
+	weekend_weekday,
+	day_name,
+	hour_ride_start, 
+	CASE
+		WHEN hour_ride_start = 0 THEN '12am'
+		WHEN hour_ride_start BETWEEN 1 and 11 THEN CONCAT(CAST(hour_ride_start AS VARCHAR(5)),'am')
+		WHEN hour_ride_start = 12 THEN '12pm'
+		WHEN hour_ride_start BETWEEN 13 and 24 THEN CONCAT(CAST((hour_ride_start-12) AS VARCHAR(5)),'pm')
+		END AS hour,
+	ride_duration_min,
+	CASE
+		WHEN ride_duration_min<=10 AND ride_duration_min>1 THEN '10min and under'
+		WHEN ride_duration_min<=20 AND ride_duration_min>10 THEN '10min to 20min'
+		WHEN ride_duration_min<=30 AND ride_duration_min>20 THEN '20min to 30min'
+		WHEN ride_duration_min<=40 AND ride_duration_min>30 THEN '30min to 40min'
+		WHEN ride_duration_min<=50 AND ride_duration_min>40 THEN '40min to 50min'
+		WHEN ride_duration_min<=60 AND ride_duration_min>50 THEN '50min to 60min'
+		ELSE 'Longer than 60min'
+		END AS ride_duration_min1,
+	count(*) as num_rides
+FROM tripdata_cleaned
+WHERE ride_duration_min > 1
+GROUP BY member_casual, rideable_type, season, month_name, weekend_weekday, day_name, hour_ride_start, ride_duration_min
+ORDER BY month_name, day_name)
+
+Select avg(ride_duration_min)
+FROM table1
+WHERE customer='Casual' 
