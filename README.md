@@ -1,5 +1,8 @@
 # Google Data Analytics Capstone Case Study on Cyclistic Bike Share 
-<img src="https://github.com/jgan010/Google-Data-Analytics-Capstone-Cyclistic/blob/main/Cyclistic%20Analysis%20Images/Cyclistic%20Bike%20share%20logo.png" width=20% height=20%> ### How does a bike-share navigate speedy success? 
+<p align="centre">
+<img src="https://github.com/jgan010/Google-Data-Analytics-Capstone-Cyclistic/blob/main/Cyclistic%20Analysis%20Images/Cyclistic%20Bike%20share%20logo.png" width=20% height=20%> 
+</p>
+### How does a bike-share navigate speedy success? 
 This capstone case study on Cyclistic bike share is part of Google Data Analytics Professional course by Google on Coursera
 
 ### The data exploration, cleaning and analysis are done using: 
@@ -30,7 +33,7 @@ For the purpose of this analysis, 12 months of data from April 2021 to March 202
 
 
 ## Data Exploration and cleaning using SQL
-**Data exploration and cleaning are done using SQL query on Postgresql.** *Query code in txt file.*
+**Data exploration and cleaning are done using SQL query on PostgreSQL on pgAdmin4.** *Query code in txt file.*
 - ride_id  was checked for duplicate  and was confirmed to be unique. 
 - Removing rides that has end time before the start time. 
 - SQL Query has revealed missing values in station name, station id, end latitude, end longitude. These are approximately 13% of the data points. These datapoints are:
@@ -42,19 +45,19 @@ For the purpose of this analysis, 12 months of data from April 2021 to March 202
 
 **Documentation of any cleaning or manipulation of data**
 
-Added columns for: 
-  - ride month number column and month name column
-  - season 
-  - day name
-  - weekend_weekday
-  - ride start hour 
-  - ride duration (is rounded to the nearest minute)
-- Added ‘Not available’ to start station name, start station id, end station name and end station id
-- The output of to_char() is a padded text with 9 characters, therefore, data was trimmed 
-- Exclude data that is negative ride duration. 
-- Data was grouped and summarised in SQL, and further processed in Tableau. 
+    - Added columns for: 
+      - ride month number column and month name column
+      - season 
+      - day name
+      - weekend_weekday
+      - ride start hour 
+      - ride duration (is rounded to the nearest minute)
+    - Added ‘Not available’ to start station name, start station id, end station name and end station id
+    - The output of to_char() is a padded text with 9 characters, therefore, data was trimmed 
+    - Exclude data that is negative ride duration. 
+    - Data was grouped and summarised in SQL, and further processed in Tableau. 
 
-*(Important observation during analysis:  During analysis in Tableau, it was noticed that the analysis of the average ride duration did not ‘make sense’ against the counts in ride durations ‘bins’.  Rechecking the data against SQL query of raw data revealed that this observation is valid. Data was checked again and it was due to the grouped data which has a count column and this affected the ‘quick’ aggregation measure in Tableau. The resolution for this issue is to use the level of detail expressions in Tableau.)*
+    *(Important observation during analysis:  During analysis in Tableau, it was noticed that the analysis of the average ride duration did not ‘make sense’ against the counts in ride durations ‘bins’.  Rechecking the data against SQL query of raw data revealed that this observation is valid. Data was checked again and it was due to the grouped data which has a count column and this affected the ‘quick’ aggregation measure in Tableau. The resolution for this issue is to use the level of detail expressions in Tableau.)*
  
 ## Data Visualizaiton
 Data analysis visualization is on [Tableau Google Data Analytics Capstone Cyclistic Bike share by Jun Gan](https://public.tableau.com/app/profile/jun.gan3045/viz/GoogleDataAnalyticsCapstoneCaseStudyHowDoesaBike-ShareNavigateSpeedySuccess_16517513915180/GoogleDataAnalyticsCapstoneCaseStudy1?publish=yes)
@@ -62,18 +65,19 @@ Data analysis visualization is on [Tableau Google Data Analytics Capstone Cyclis
 ## Summary Analysis 
 #### Cyclistic Riders 
 Annual Members usage surpass casual riders by 11%. Both customers prefer classic bikes. 
-
-<img src="https://github.com/jgan010/Google-Data-Analytics-Capstone-Cyclistic/blob/main/Cyclistic%20Analysis%20Images/Cyclistic%20Customers.png>" width=50% height=50%>
+<p align="centre"
+  <img src="https://github.com/jgan010/Google-Data-Analytics-Capstone-Cyclistic/blob/main/Cyclistic%20Analysis%20Images/Cyclistic%20Customers.png" width=50% height = "50%>
+</p>
 
 #### Season Usage
 Bike usage peak during summer months for both casual riders and annual members with only slightly higher number of rides for casual riders. There is a significant decline in casual riders in winter months compared to annual members. Between October to December, the number of casual riders is 1.5 -2.6x less than annual members. 
 
-<img src= "https://github.com/jgan010/Google-Data-Analytics-Capstone-Cyclistic/blob/main/Cyclistic%20Analysis%20Images/Number%20of%20Rides%20by%20Season.png" width=20% height=20%>
+<img src= "https://github.com/jgan010/Google-Data-Analytics-Capstone-Cyclistic/blob/main/Cyclistic%20Analysis%20Images/Number%20of%20Rides%20by%20Season.png" width=50% height=50%>
 
 #### Ride Analysis
 High usage of bikes by annual members during peak rush hours with rides averaging around 13.7 minutes. Half of the annual members (54.5%) tend to use the bikes for less than 10 minutes. The number of rides by annual members drop during weekends and are lower than casual members.  These suggests that annual members use the bikes for commuting to work. 
 <p align="centre">
-<img src="https://github.com/jgan010/Google-Data-Analytics-Capstone-Cyclistic/blob/main/Cyclistic%20Analysis%20Images/Number%20of%20Rides%20by%20Hour.png" width=60% height=60%>   <img src="https://github.com/jgan010/Google-Data-Analytics-Capstone-Cyclistic/blob/main/Cyclistic%20Analysis%20Images/Total%20Number%20of%20Rides%20by%20Week.png" width=50% height=50%>
+<img src="https://github.com/jgan010/Google-Data-Analytics-Capstone-Cyclistic/blob/main/Cyclistic%20Analysis%20Images/Number%20of%20Rides%20by%20Hour.png" width=60% height=60%>   <img src="https://github.com/jgan010/Google-Data-Analytics-Capstone-Cyclistic/blob/main/Cyclistic%20Analysis%20Images/Total%20Number%20of%20Rides%20by%20Week.png" width=40% height=40%>
 
 <img src="https://github.com/jgan010/Google-Data-Analytics-Capstone-Cyclistic/blob/main/Cyclistic%20Analysis%20Images/Average%20Ride%20Duration%20by%20Day.png" width=50% height=49%>    <img src="https://github.com/jgan010/Google-Data-Analytics-Capstone-Cyclistic/blob/main/Cyclistic%20Analysis%20Images/Avg%20Ride%20Duration%20trend%20by%20season.png" width=50% height=50%>.   
 
@@ -94,10 +98,11 @@ The bottom right corner of the map is the location of University of Chicago and 
 
 <p align="centre">
 <img src="https://github.com/jgan010/Google-Data-Analytics-Capstone-Cyclistic/blob/main/Cyclistic%20Analysis%20Images/Map%20Casual%20riders.png" width=30% height=30%>       <img src="https://github.com/jgan010/Google-Data-Analytics-Capstone-Cyclistic/blob/main/Cyclistic%20Analysis%20Images/Map%20Annual%20Members.png" width=30% height=30%>
+<p>
+    
+<img src="https://github.com/jgan010/Google-Data-Analytics-Capstone-Cyclistic/blob/main/Cyclistic%20Analysis%20Images/Top%2010%20Station.png" width=40% height=40%>
 
-<img src="https://github.com/jgan010/Google-Data-Analytics-Capstone-Cyclistic/blob/main/Cyclistic%20Analysis%20Images/Top%2010%20Station.png" width=30% height=30%>
-
-<img src="https://github.com/jgan010/Google-Data-Analytics-Capstone-Cyclistic/blob/main/Cyclistic%20Analysis%20Images/Number%20of%20rides%20table.png" width=50% height=50%>
+<img src="https://github.com/jgan010/Google-Data-Analytics-Capstone-Cyclistic/blob/main/Cyclistic%20Analysis%20Images/Number%20of%20rides%20table.png" width=80% height=80%>
 
 ## Conclusion: 
 Bike usage peak during summer months. Annual members show peak usage at peak hours with ride duration averaging around 13 minutes.  Casual riders tend to use the bikes 2.2 – 2.5x longer than annual members. Higher numbers of casual riders around the coastal area whereas the number of annual members tends are more evenly spread across city and higher around university area. 30% of casual riders uses the bike for 10 min and less suggest possibility that these riders are commuters with potential to convert them to annual membership.  
