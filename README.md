@@ -1,6 +1,6 @@
 
 # Google Data Analytics Capstone Case Study on Cyclistic Bike Share 
-!(/Users/jun/Documents/githubProjects/Portfolio/Cyclistic Bike share logo.png)
+(https://github.com/jgan010/Google-Data-Analytics-Capstone-Cyclistic/blob/main/Cyclistic%20Analysis%20Images/Cyclistic%20Bike%20share%20logo.png)
 
 ### How does a bike-share navigate speedy success? 
 This capstone case study on Cyclistic bike share is part of Google Data Analytics Professional course by Google on Coursera
@@ -43,7 +43,7 @@ For the purpose of this analysis, 12 months of data from April 2021 to March 202
 - SQL query revealed maximum ride duration as long as 38 days. It is likely that this may be an error or an outlier. However, rides that are more than 24 hours only made up approximately 0.07% therefore these rides are unlikely to affect the analysis. Therefore the data was kept in case of further question that arises during analysis.
 
 
-**Documentation of any cleaning or manipulation of data:**
+**Documentation of any cleaning or manipulation of data:** 
 Added:
   - ride month number column and month name column
   - a column for season 
