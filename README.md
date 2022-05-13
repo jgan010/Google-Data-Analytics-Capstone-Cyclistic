@@ -20,9 +20,10 @@ A bike-share program that features more than 5,824 bicycles and 692 docking stat
 
 The director of marketing, Lily Moreno, believes that maximizing the number of annual members will be key to future growth. Rather than creating a marketing campaign that targets all-new customers, Moreno believes there is a very good chance to convert casual riders into members.
 
-## Limitation/Assumptions made of data available
-- No information on where casual riders lives in the Cyclistic service area due to data-privacy issues prohibit the use of riders’ personally identifiable information.
-- Analysis and insights will be limited on the casual rider’s behaviour as there are no data on types of purchase (single pass or full-day pass) and if there are multiple purchases from the same casual rider. 
+## Questions to explore relating to business task:
+1. What are the trend seen for bike usage by season, month, day and time broken down by customer type?
+2. How does ride duration differ between casual riders and annual members? 
+3. What are the top 10 stations that are frequented by casual riders and annual members?
 
 ## Data Sources
 Historical bike trip data provided by Motivate International Inc. under licence from [Divvy Bikes](https://ride.divvybikes.com/data-license-agreement). (The datasets have a different name because Cyclistic is a fictional company for the purpose of the Google Data Analytic Capstone project). Personal identifiable information are not available due to data-privacy. 
@@ -35,6 +36,9 @@ For the purpose of this analysis, 12 months of data from April 2021 to March 202
 - Data is current as the most recent data used was March 2022
 - There are missing data points for start station and end station and geographic latitude and longitude in the dataset therefore the data is not as comprehensive as it could have been. We will keep this in mind and account for these during data analysis.
 
+## Limitation/Assumptions made of data available
+- No information on where casual riders lives in the Cyclistic service area due to data-privacy issues prohibit the use of riders’ personally identifiable information.
+- Analysis and insights will be limited on the casual rider’s behaviour as there are no data on types of purchase (single pass or full-day pass) and if there are multiple purchases from the same casual rider. 
 
 ## Data Exploration and Cleaning using SQL
 **Data exploration and cleaning are done using SQL query on PostgreSQL on pgAdmin4.** *Query code in txt file.*
@@ -45,7 +49,6 @@ For the purpose of this analysis, 12 months of data from April 2021 to March 202
     - are excluded in understanding the top 10 popular stations between customer who are casual and member to gain insights on location usage.
 - Rides that are a minute and less are excluded – start and end location checked to be the same therefore would assume these are not valid rides. 
 - SQL query revealed maximum ride duration as long as 38 days. It is likely that this may be an error or an outlier. However, rides that are more than 24 hours only made up approximately 0.07% therefore these rides are unlikely to affect the analysis. Therefore the data was kept in case of further question that arises during analysis.
-
 
 **Documentation of any cleaning or manipulation of data**
 - Added columns for: 
@@ -62,9 +65,9 @@ For the purpose of this analysis, 12 months of data from April 2021 to March 202
 
 *(Important observation during analysis:  During analysis in Tableau, it was noticed that the analysis of the average ride duration did not ‘make sense’ against the counts in ride durations ‘bins’.  Rechecking the data against SQL query of raw data revealed that this observation is valid. Data was checked again and it was due to the grouped data which has a count column and this affected the ‘quick’ aggregation measure in Tableau. The resolution for this issue is to use the level of detail expressions in Tableau.)*
     
- 
 ## Data Visualization
 Data analysis visualization is on [Tableau Google Data Analytics Capstone Cyclistic Bike share by Jun Gan](https://public.tableau.com/app/profile/jun.gan3045/viz/GoogleDataAnalyticsCapstoneCaseStudyHowDoesaBike-ShareNavigateSpeedySuccess_16517513915180/GoogleDataAnalyticsCapstoneCaseStudy1?publish=yes)
+
 
 ## Summary Analysis 
 #### Cyclistic Riders 
