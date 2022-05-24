@@ -38,7 +38,7 @@ For the purpose of this analysis, 12 months of data from April 2021 to March 202
 
 ## Limitation/Assumptions made of data available
 - No information on where casual riders lives in the Cyclistic service area due to data-privacy issues prohibit the use of riders’ personally identifiable information.
-- Analysis and insights will be limited on the casual rider’s behaviour as there are no data on types of purchase (single pass or full-day pass) and if there are multiple purchases from the same casual rider. 
+- Analysis and insights of the casual rider’s behaviour will be limited as there are no data on types of purchase (single pass or full-day pass) and if there are multiple purchases from the same casual rider. 
 
 ## Data Exploration and Cleaning using SQL
 **Data exploration and cleaning are done using SQL query on PostgreSQL on pgAdmin4.** *Query code in txt file.*
@@ -46,7 +46,7 @@ For the purpose of this analysis, 12 months of data from April 2021 to March 202
 - Removing rides that has end time before the start time. 
 - SQL Query has revealed missing values in station name, station id, end latitude, end longitude. These are approximately 13% of the data points. These datapoints are:
     - not excluded in ride calculations to understand behaviour of the customers who are casual and members as it will give a more accurate representation of the bike usage.
-    - are excluded in understanding the top 10 popular stations between customer who are casual and member to gain insights on location usage.
+    - are excluded in understanding the top 10 popular stations between customer who are casual and member to gain insights on location usage. Although data points are excluded, it still gives a relative information in station popularity by customer types.
 - Rides that are a minute and less are excluded – start and end location checked to be the same therefore would assume these are not valid rides. 
 - SQL query revealed maximum ride duration as long as 38 days. It is likely that this may be an error or an outlier. However, rides that are more than 24 hours only made up approximately 0.07% therefore these rides are unlikely to affect the analysis. Therefore the data was kept in case of further question that arises during analysis.
 
