@@ -102,7 +102,7 @@ Casual Riders on the other hand rides 2.2-2.5x longer than annual members throug
 
 The number of rides by annual members are higher than casual members on the weekdays but is lower during weekends.  
 <p align="center">
-    <img src="https://github.com/jgan010/Google-Data-Analytics-Capstone-Cyclistic/blob/main/Cyclistic%20Analysis%20Images/Total%20Number%20of%20Rides%20by%20Week.png" width=60% height=50%>
+    <img src="Cyclistic Analysis Images/Total Number of Rides shown by Day in the Week.png" width=60% height=50%>
 </p>
 
 Half of the annual members (54.5%) tend to use the bikes for less than 10 minutes. These data indicated that the annual members are likely commuters. It is likely that the 30.3% of the casual riders uses the bikes for less than 10 minutes are also commuters. 
